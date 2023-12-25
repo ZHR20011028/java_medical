@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/medical?serverTimezone=UTC
+    username: root
+    password: zeng282512@
+    type: com.alibaba.druid.pool.DruidDataSource
+  main:
+    banner-mode: off
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      # id自动生成配置
+      id-type: assign_id
+      #数据库前缀配置
+      table-prefix: tb_
+      # 逻辑删除字段配置
+      logic-delete-field: deleted
+      logic-not-delete-value: 1
+      logic-delete-value: 0
