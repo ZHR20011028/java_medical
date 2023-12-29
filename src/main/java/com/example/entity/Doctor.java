@@ -23,7 +23,7 @@ public class Doctor {
     private String doctorName;
     private String gender;
     private String birthday;
-    private String telephone;
+    private String doctorTelephone;
     private String email;
     @TableLogic(value = "1",delval = "0")
     private Integer deleted;

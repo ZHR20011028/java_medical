@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.WorkDao">
+    <select id="selectAllDoctorWork" resultType="com.example.entity.DoctorWorkDept">
+        select work_id, work_time, dept_name, doctor_name, doctor_telephone
+        from tb_work
+                 join tb_doctor using (doctor_id)
+                 join tb_department using (dept_id)
+    </select>
+</mapper>

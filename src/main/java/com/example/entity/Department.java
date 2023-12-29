@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 public class Department {
     @TableId
     private Long deptId;
-    private String name;
-    private String telephone;
-    private String location;
+    private String deptName;
+    private String deptTelephone;
+    private String deptLocation;
     @TableLogic(value = "1", delval = "0")
     private Integer deleted;
 }

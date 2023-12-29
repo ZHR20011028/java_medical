@@ -1,8 +1,11 @@
 package com.example.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.entity.DoctorWorkDept;
 import com.example.entity.Work;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @Auther: 2500728177@qq.com
@@ -12,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WorkDao extends BaseMapper<Work> {
+    List<DoctorWorkDept> selectAllDoctorWork(); //返回值班的医生
 }
