@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.java.Log;
 
 /**
  * @Auther: 2500728177@qq.com

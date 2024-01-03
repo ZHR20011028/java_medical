@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.AllArgsConstructor;
@@ -16,12 +17,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Registered {
-    @TableId
+    @TableId(value = "registered_id", type = IdType.AUTO)
     private Long registeredId;
+    private Long deptId;
     private Long doctorId;
     private Long patientId;
     private Integer state;
-    private String noticeContent;
-    @TableLogic(value = "1",delval = "0")
+    private Integer deptRank;
+    @TableLogic(value = "1", delval = "0")
     private Integer deleted;
 }

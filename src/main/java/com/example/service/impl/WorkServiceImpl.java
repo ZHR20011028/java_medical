@@ -2,12 +2,10 @@ package com.example.service.impl;
 
 import com.example.dao.WorkDao;
 import com.example.entity.DoctorWorkDept;
-import com.example.entity.Work;
 import com.example.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.WatchService;
 import java.util.List;
 
 /**
@@ -20,6 +18,12 @@ import java.util.List;
 public class WorkServiceImpl implements WorkService {
     @Autowired
     private WorkDao workDao;
+
+    /**
+     * 返回所有的值班信息
+     *
+     * @return 成功，返回，失败返回null
+     */
     @Override
     public List<DoctorWorkDept> getAll() {
         return workDao.selectAllDoctorWork();

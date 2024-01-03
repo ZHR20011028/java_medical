@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.entity.DoctorWorkDept;
-import com.example.entity.Work;
 import com.example.service.WorkService;
 import com.example.utils.Code;
 import com.example.utils.Result;
@@ -24,7 +23,10 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
-    //返回所有通知
+    /**
+     * 返回所有的值班信息
+     * @return 成功20041，失败20040
+     */
     @GetMapping
     public Result getAll() {
         List<DoctorWorkDept> workAll = workService.getAll();
