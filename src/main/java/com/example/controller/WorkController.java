@@ -1,13 +1,12 @@
 package com.example.controller;
 
 import com.example.entity.DoctorWorkDept;
+import com.example.entity.Work;
 import com.example.service.WorkService;
 import com.example.utils.Code;
 import com.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,16 +22,24 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
-    /**
-     * 返回所有的值班信息
-     * @return 成功20041，失败20040
-     */
-    @GetMapping
-    public Result getAll() {
-        List<DoctorWorkDept> workAll = workService.getAll();
-        if (workAll != null) {
-            return new Result(Code.GET_OK, workAll);
+    @PostMapping
+    public Result addWork(@RequestBody Work work) {
+        boolean flag = workService.addWork(work);
+        if (flag) {
+            return new Result(Code.SAVE_OK);
+        } else {
+            return new Result(Code.SAVE_ERR, null, "请求失败！");
         }
-        return new Result(Code.GET_ERR, null, "请求失败！");
     }
+
+    @PutMapping
+    public Result modifyWork(@RequestBody Work work) {
+        boolean flag = workService.modifyWork(work);
+        if (flag) {
+            return new Result(Code.UPDATE_OK);
+        } else {
+            return new Result(Code.UPDATE_ERR, null, "请求失败！");
+        }
+    }
+
 }

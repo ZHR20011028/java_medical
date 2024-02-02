@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @Auther: 2500728177@qq.com
  * @Date: 2023/12/25
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Drug {
+public class Drug implements Serializable {
     @TableId
     private Long drugId;
     private String drugsName;
@@ -25,6 +27,7 @@ public class Drug {
     private String drugsManuFactor;
     private String manufactureTime;
     private String expireTime;
+    private Integer drugsNumber;
     private Double purchasePrice;
     private Double salePrice;
     private String isImport;

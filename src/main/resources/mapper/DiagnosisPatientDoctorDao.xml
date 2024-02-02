@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DiagnosisPatientDoctorDao">
+
+    <select id="selectAllDiagnosisByPatientId" resultType="com.example.entity.DiagnosisPatientDoctor">
+        SELECT patient_name,
+               patient_gender,
+               patient_birthday,
+               dept_name,
+               doctor_name,
+               symptom_desc,
+               symptom_idea,
+               create_time
+        FROM tb_diagnosis_result
+                 LEFT JOIN tb_patient USING (patient_id)
+                 LEFT JOIN (SELECT doctor_id, doctor_name, dept_name
+                            FROM tb_doctor
+                                     LEFT JOIN tb_department USING (dept_id)
+                            WHERE tb_doctor.deleted = 1) AS tb_doctor_dept USING (doctor_id)
+        WHERE tb_diagnosis_result.deleted = 1
+          AND tb_diagnosis_result.patient_id = #{patientId}
+    </select>
+</mapper>

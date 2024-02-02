@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DoctorDeptDao">
+
+    <select id="selectPageDoctor" resultType="com.example.entity.DoctorDept">
+        SELECT tb_doctor.doctor_id,
+               tb_doctor.dept_id,
+               tb_department.dept_name,
+               tb_doctor.doctor_name,
+               tb_doctor.doctor_gender,
+               tb_doctor.doctor_birthday,
+               tb_doctor.doctor_telephone,
+               tb_doctor.date_of_entry,
+               tb_doctor.degree,
+               tb_doctor.job_title,
+               tb_doctor.email
+        FROM tb_doctor
+                 LEFT JOIN tb_department USING (dept_id)
+        WHERE tb_department.deleted = 1
+          AND tb_doctor.deleted = 1
+        LIMIT #{current},#{pageSize}
+    </select>
+    <select id="selectDoctorByDeptId" resultType="com.example.entity.DoctorDept">
+        SELECT tb_doctor.doctor_id,
+               tb_doctor.dept_id,
+               tb_department.dept_name,
+               tb_doctor.doctor_name,
+               tb_doctor.doctor_gender,
+               tb_doctor.doctor_birthday,
+               tb_doctor.doctor_telephone,
+               tb_doctor.date_of_entry,
+               tb_doctor.degree,
+               tb_doctor.job_title,
+               tb_doctor.email
+        FROM tb_doctor
+                 LEFT JOIN tb_department USING (dept_id)
+        WHERE tb_department.deleted = 1
+          AND tb_doctor.deleted = 1
+          AND (tb_doctor.dept_id = #{deptId})
+    </select>
+    <select id="selectDoctorByDoctorId" resultType="com.example.entity.DoctorDept">
+        SELECT tb_doctor.doctor_id,
+               tb_doctor.dept_id,
+               tb_department.dept_name,
+               tb_doctor.doctor_name,
+               tb_doctor.doctor_gender,
+               tb_doctor.doctor_birthday,
+               tb_doctor.doctor_telephone,
+               tb_doctor.date_of_entry,
+               tb_doctor.degree,
+               tb_doctor.job_title,
+               tb_doctor.email
+        FROM tb_doctor
+                 LEFT JOIN tb_department USING (dept_id)
+        WHERE tb_department.deleted = 1
+          AND tb_doctor.deleted = 1
+          AND (tb_doctor.doctor_id = #{doctorId})
+    </select>
+</mapper>

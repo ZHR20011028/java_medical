@@ -2,7 +2,7 @@ package com.example.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.entity.Registered;
-import com.example.entity.RegisteredDoctorDept;
+import com.example.entity.DeptRegister;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,6 +16,4 @@ import java.util.List;
  */
 @Mapper
 public interface RegisteredDao extends BaseMapper<Registered> {
-    List<RegisteredDoctorDept> selectRegisteredCount(); //返回每个科室挂号人数
-    RegisteredDoctorDept selectByDeptId(@Param("deptId") Long deptId);
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DeptTriageDao">
+
+    <select id="selectDeptTriageCountByDeptId" resultType="int">
+        SELECT count(*)
+        FROM tb_registered
+                 LEFT JOIN tb_patient USING (patient_id)
+        WHERE tb_registered.deleted = 1
+          AND dept_id = #{deptId}
+    </select>
+    <select id="selectPageDeptTriageByDeptId" resultType="com.example.entity.DeptTriage">
+        SELECT patient_id, registered_id, dept_rank, patient_name, patient_gender, patient_birthday, state
+        FROM tb_registered
+                 LEFT JOIN tb_patient USING (patient_id)
+        WHERE tb_registered.deleted = 1
+          AND dept_id = #{deptId}
+        LIMIT #{start},#{pageSize}
+    </select>
+</mapper>

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @Auther: 2500728177@qq.com
  * @Date: 2023/12/25
@@ -15,11 +17,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Work {
+public class Work implements Serializable {
     @TableId
     private Long workId;
     private Long doctorId;
     private String workTime;
+    private Integer workType;
     @TableLogic(value = "1", delval = "0")
     private Integer deleted;
 }

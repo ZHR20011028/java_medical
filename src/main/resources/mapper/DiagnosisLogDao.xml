@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DiagnosisLogDao">
+
+    <select id="selectPageDiagnosisLog" resultType="com.example.entity.DiagnosisLog">
+        SELECT tb_doctor.doctor_id, tb_doctor.doctor_name, tb_log.log_content, tb_log.create_time
+        FROM tb_log
+                 LEFT JOIN tb_doctor USING (doctor_id)
+        WHERE tb_log.deleted = 1
+          AND tb_log.user_id IS NULL
+        LIMIT #{current},#{pageSize}
+    </select>
+    <select id="selectDiagnosisTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM tb_log
+                 LEFT JOIN tb_doctor USING (doctor_id)
+        WHERE tb_log.deleted = 1
+          AND tb_log.user_id IS NULL
+    </select>
+    <select id="selectDiagnosisLogByDoctorName" resultType="com.example.entity.DiagnosisLog">
+        SELECT tb_doctor.doctor_id, tb_doctor.doctor_name, tb_log.log_content, tb_log.create_time
+        FROM tb_log
+                 LEFT JOIN tb_doctor USING (doctor_id)
+        WHERE tb_log.deleted = 1
+          AND tb_log.user_id IS NULL
+          AND tb_doctor.doctor_name = #{doctorName}
+    </select>
+</mapper>

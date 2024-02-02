@@ -15,5 +15,5 @@ import java.util.List;
  */
 @Mapper
 public interface WorkDao extends BaseMapper<Work> {
-    List<DoctorWorkDept> selectAllDoctorWork(); //返回值班的医生
+
 }

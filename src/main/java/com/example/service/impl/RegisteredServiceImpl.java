@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.dao.RegisteredDao;
 import com.example.entity.Registered;
-import com.example.entity.RegisteredDoctorDept;
+import com.example.entity.DeptRegister;
 import com.example.service.RegisteredService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +21,6 @@ public class RegisteredServiceImpl implements RegisteredService {
     @Autowired
     private RegisteredDao registeredDao;
 
-    @Override
-    public List<RegisteredDoctorDept> getRegisteredCount() {
-        return registeredDao.selectRegisteredCount();
-    }
-
     /**
      * 挂号
      *
@@ -37,6 +32,7 @@ public class RegisteredServiceImpl implements RegisteredService {
         //先查询是否挂号，没有，则插入
         LambdaQueryWrapper<Registered> lqw = new LambdaQueryWrapper<>();
         lqw.eq(Registered::getPatientId, registered.getPatientId());
+        lqw.ne(Registered::getState,3);
         if (registeredDao.selectOne(lqw) == null) {
             return registeredDao.insert(registered);
         } else {
@@ -55,15 +51,25 @@ public class RegisteredServiceImpl implements RegisteredService {
         // 先查询是否挂号然后在删除
         LambdaQueryWrapper<Registered> lqw1 = new LambdaQueryWrapper<>();
         lqw1.eq(Registered::getPatientId, registered.getPatientId());
+        lqw1.ne(Registered::getState,3);
         if (registeredDao.selectOne(lqw1) != null) {
             LambdaQueryWrapper<Registered> lqw2 = new LambdaQueryWrapper<>();
             lqw2.eq(Registered::getDeptId, registered.getDeptId());
-            lqw2.eq(Registered::getDoctorId, registered.getDoctorId());
             lqw2.eq(Registered::getPatientId, registered.getPatientId());
             return registeredDao.delete(lqw2);
         } else {
             return 0;
         }
+    }
+
+    /**
+     * 更新挂号状态
+     * @param registered 挂号实体
+     * @return 返回修改行数
+     */
+    @Override
+    public int updateRegisterState(Registered registered) {
+        return registeredDao.updateById(registered);
     }
 
     /**
@@ -76,17 +82,8 @@ public class RegisteredServiceImpl implements RegisteredService {
     public Registered selectRegisteredByPatientId(Long patientId) {
         LambdaQueryWrapper<Registered> lqw = new LambdaQueryWrapper<>();
         lqw.eq(Registered::getPatientId, patientId);
+        lqw.ne(Registered::getState,3);
         return registeredDao.selectOne(lqw);
     }
 
-    /**
-     * 查询某个科室的挂号人数基本信息
-     *
-     * @param deptId 科室id
-     * @return 成功返回信息，失败null
-     */
-    @Override
-    public RegisteredDoctorDept selectRegisteredCountByDeptId(Long deptId) {
-        return registeredDao.selectByDeptId(deptId);
-    }
 }

@@ -16,9 +16,11 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOriginPatterns("*")
-                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedOrigins("http://localhost:8081")  // 允许 8081 端口发来的跨域请求
                 .allowCredentials(true)
-                .maxAge(3600)
-                .allowedHeaders("*");
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS","PATCH")
+                .allowedHeaders("*")
+                .maxAge(3600);
+
     }
 }

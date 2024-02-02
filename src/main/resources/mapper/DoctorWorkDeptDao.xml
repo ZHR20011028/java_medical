@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.dao.WorkDao">
+<mapper namespace="com.example.dao.DoctorWorkDeptDao">
     <select id="selectAllDoctorWork" resultType="com.example.entity.DoctorWorkDept">
         select work_id, work_time, dept_name, doctor_name, doctor_telephone
         from tb_work
                  join tb_doctor using (doctor_id)
                  join tb_department using (dept_id)
+        where tb_work.deleted = 1
+          and tb_doctor.deleted = 1
+          and tb_department.deleted = 1 and tb_work.work_time = #{workTime}
     </select>
 </mapper>

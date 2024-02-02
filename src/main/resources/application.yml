@@ -10,6 +10,16 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   main:
     banner-mode: off
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  web:
+    # 与项目代码分离的静态资源路径，即：文件上传保存根路径
+    upload-path: E:/Code/files/medicalFiles
+    resources:
+      # 除了带上Spring Boot默认的静态资源路径之外，加上file:${web.upload-path}指向外部的文件资源上传路径。该路径下的静态资源可以直接对外提供HTTP访问服务。
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${spring.web.upload-path}
 
 mybatis-plus:
   configuration:
@@ -28,3 +38,6 @@ mybatis-plus:
       logic-delete-value: 0
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.entity
+
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DutyDao">
+
+    <select id="selectAllDutyOK" resultType="com.example.entity.Duty">
+        SELECT tb_work.work_id,
+               tb_doctor.doctor_id,
+               tb_doctor.doctor_name,
+               tb_work.work_time,
+               tb_work.work_type
+        FROM tb_doctor
+                 LEFT JOIN tb_work USING (doctor_id)
+        WHERE tb_doctor.deleted = 1
+          AND (tb_work.deleted = 1 OR tb_work.deleted IS NULL)
+          AND tb_doctor.dept_id = #{deptId}
+          AND tb_work.work_time = #{workTime}
+    </select>
+    <select id="selectAllDutyNo" resultType="com.example.entity.Duty">
+        SELECT tb_work.work_id,
+               tb_doctor.doctor_id,
+               tb_doctor.doctor_name,
+               tb_work.work_time,
+               tb_work.work_type
+        FROM tb_doctor
+                 LEFT JOIN tb_work USING (doctor_id)
+        WHERE tb_doctor.deleted = 1
+          AND (tb_work.deleted = 1 OR tb_work.deleted IS NULL)
+          AND tb_doctor.dept_id = #{deptId}
+          AND (tb_work.work_time is null or tb_work.work_time != #{workTime})
+    </select>
+</mapper>

@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.entity.Registered;
-import com.example.entity.RegisteredDoctorDept;
+import com.example.entity.DeptRegister;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,9 +14,10 @@ import java.util.List;
  */
 @Transactional
 public interface RegisteredService {
-    List<RegisteredDoctorDept> getRegisteredCount();
+
     int insertRegistered(Registered registered);
     int deleteRegistered(Registered registered);
+    int updateRegisterState(Registered registered);
     Registered selectRegisteredByPatientId(Long patientId);
-    RegisteredDoctorDept selectRegisteredCountByDeptId(Long deptId);
+
 }

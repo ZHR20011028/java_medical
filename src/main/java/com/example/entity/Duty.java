@@ -4,20 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @Auther: 2500728177@qq.com
- * @Date: 2023/12/29
+ * @Date: 2024/1/13
  * @Description: com.example.entity
  * @Version: 1.0
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisteredDoctorDept {
-    Long deptId;
-    Long doctorId;
-    String deptName;
-    String deptLocation;
-    String deptTelephone;
-    Integer patientCount;
+public class Duty implements Serializable {
+    private Long workId;
+    private Long doctorId;
+    private String doctorName;
+    private String workTime;
+    private Integer workType;
 }

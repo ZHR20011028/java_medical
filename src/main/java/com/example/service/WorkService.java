@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.entity.DoctorWorkDept;
+import com.example.entity.Work;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,5 +14,6 @@ import java.util.List;
  */
 @Transactional
 public interface WorkService {
-    public List<DoctorWorkDept> getAll();
+    boolean addWork(Work work);
+    boolean modifyWork(Work work);
 }
