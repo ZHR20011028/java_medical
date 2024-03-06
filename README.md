@@ -10,14 +10,14 @@
 
 **目录截图**
 
-![](.\image\目录结构.png)
+![](.\image\2.png)
 
 **部分源代码截图**
 
-![](.\image\部分代码截图.png)
+![](.\image\3.png)
 
 **接口测试截图**
 
 接口使用RESTful开发方式
 
-![](.\image\Apifox测试接口.png)
+![](.\image\1.png)
