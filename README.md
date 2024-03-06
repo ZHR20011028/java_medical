@@ -10,14 +10,14 @@
 
 **目录截图**
 
-![](.\image\1.png)
+![](./image/1.png)
 
 **部分源代码截图**
 
-![](.\image\2.png)
+![](./image/2.png)
 
 **接口测试截图**
 
 接口使用RESTful开发方式
 
-![](.\image\3.png)
+![](./image/3.png)
